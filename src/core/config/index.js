@@ -13,6 +13,11 @@ export const DEFAULT_PROPS = {
   minValue: 0,
   maxValue: 1000,
 
+  hasBorder: false,
+  // the corners and spacing between the items
+  cornerRadius: 0,
+  arcPadding: 0,
+
   forceRender: false,
 
   width: 300,
@@ -127,6 +132,11 @@ export const getConfig = ({ PROPS, parentWidth, parentHeight }) => {
     needleHeightRatio: PROPS.needleHeightRatio,
     // text color
     textColor: PROPS.textColor,
+
+    cornerRadius: PROPS.cornerRadius,
+    arcPadding: PROPS.arcPadding,
+    hasBorder: PROPS.hasBorder,
+
     // label format
     labelFormat: d3Format(PROPS.valueFormat),
     // value text string (template string)

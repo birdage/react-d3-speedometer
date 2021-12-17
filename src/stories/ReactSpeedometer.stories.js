@@ -38,6 +38,22 @@ export const ConfiguringValues = () => (
   />
 )
 
+export const ConfiguringValuesWithBorder = () => (
+  <ReactSpeedometer
+    hasBorder={true}
+    cornerRadius={5}
+    arcPadding={0.02}
+    maxValue={500}
+    value={473}
+    needleColor="red"
+    startColor="green"
+    segments={10}
+    endColor="blue"
+    textColor="grey"
+    textColor={textColor}
+  />
+)
+
 export const CustomSegmentLabels = () => (
   <div>
     <div>
@@ -261,15 +277,16 @@ export const ConfigureNeedleLengthAndFontSizes = () => (
   />
 )
 
-export const GradientEffectWithLargeNumberOfSegmentsAndMaxSegmentLabelsConfig = () => (
-  <ReactSpeedometer
-    needleHeightRatio={0.7}
-    maxSegmentLabels={5}
-    segments={5555}
-    value={333}
-    textColor={textColor}
-  />
-)
+export const GradientEffectWithLargeNumberOfSegmentsAndMaxSegmentLabelsConfig =
+  () => (
+    <ReactSpeedometer
+      needleHeightRatio={0.7}
+      maxSegmentLabels={5}
+      segments={5555}
+      value={333}
+      textColor={textColor}
+    />
+  )
 
 export const NoSegmentLabels = () => (
   <div>

@@ -20,6 +20,7 @@ import {
   configureTicks,
   configureTickData,
   configureScale,
+  getBorderArc,
 } from '../config/configure'
 
 export const update = ({ d3_refs, newValue, config }) => {
@@ -80,6 +81,10 @@ function _renderArcs({ config, svg, centerTx }) {
   const arc = configureArc(config)
 
   let arcs = svg.append('g').attr('class', 'arc').attr('transform', centerTx)
+  let arcBorderContainer = svg
+    .append('g')
+    .attr('class', 'arc')
+    .attr('transform', centerTx)
 
   arcs
     .selectAll('path')
@@ -96,6 +101,20 @@ function _renderArcs({ config, svg, centerTx }) {
       return config.arcColorFn(d * i)
     })
     .attr('d', arc)
+
+  if (config.hasBorder) {
+    //generate a border around the items
+    let arcBorder = getBorderArc(config, 0, 0, 2)
+
+    arcBorderContainer
+      .selectAll('path')
+      .data(tickData)
+      .enter()
+      .append('path')
+      .attr('class', 'speedo-segment-outline')
+      .attr('fill', 'white')
+      .attr('d', arcBorder)
+  }
 }
 
 export function _renderLabels({ config, svg, centerTx, r }) {

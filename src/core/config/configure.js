@@ -13,6 +13,7 @@ export const configureScale = memoizeOne(_configureScale)
 export const configureTicks = memoizeOne(_configureTicks)
 export const configureTickData = memoizeOne(_configureTickData)
 export const configureArc = memoizeOne(_configureArc)
+export const getBorderArc = memoizeOne(_getBorderArc)
 
 function _configureScale(config) {
   return calculateScale({
@@ -62,6 +63,31 @@ function _configureArc(config) {
   const arc = d3Arc()
     .innerRadius(r - config.ringWidth - config.ringInset)
     .outerRadius(r - config.ringInset)
+    .cornerRadius(config.cornerRadius) //to round the corners
+    .padAngle(config.arcPadding) // to space the arc segments
+    .startAngle((d, i) => {
+      const ratio = sumArrayTill(tickData, i)
+      return deg2rad(config.minAngle + ratio * range)
+    })
+    .endAngle((d, i) => {
+      const ratio = sumArrayTill(tickData, i + 1)
+      return deg2rad(config.minAngle + ratio * range)
+    })
+
+  return arc
+}
+
+function _getBorderArc(config, cornerRadius, arcPadding, borderWidth) {
+  const tickData = configureTickData(config)
+
+  const range = config.maxAngle - config.minAngle
+  const r = config.width / 2
+
+  const arc = d3Arc()
+    .innerRadius(r - config.ringInset)
+    .outerRadius(r - config.ringInset - borderWidth)
+    // .cornerRadius(config.cornerRadius) //to round the corners
+    // .padAngle(config.arcPadding) // to space the arc segments
     .startAngle((d, i) => {
       const ratio = sumArrayTill(tickData, i)
       return deg2rad(config.minAngle + ratio * range)

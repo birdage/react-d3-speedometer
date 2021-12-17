@@ -3,17 +3,16 @@
   "version": "1.0.1",
   "description": "React library for showing speedometer like gauge using d3.",
   "author": {
-    "name": "palerdot",
-    "email": "palerdot@gmail.com"
+    "name": "birdage"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/palerdot/react-d3-speedometer.git"
+    "url": "https://github.com/birdage/react-d3-speedometer.git"
   },
   "bugs": {
-    "url": "https://github.com/palerdot/react-d3-speedometer/issues"
+    "url": "https://github.com/birdage/react-d3-speedometer/issues"
   },
-  "homepage": "https://github.com/palerdot/react-d3-speedometer",
+  "homepage": "https://github.com/birdage/react-d3-speedometer",
   "keywords": [
     "react",
     "d3",
